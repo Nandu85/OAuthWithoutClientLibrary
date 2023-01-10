@@ -55,7 +55,7 @@ public class OAuthService {
     }
 
     public String getPersonDetail (String token) throws URISyntaxException, IOException, ParseException {
-        URIBuilder uriBuilder = new URIBuilder("https://people.googleapis.com/v1/people/me");
+        URIBuilder uriBuilder = new URIBuilder("https://www.googleapis.com/oauth2/v3/userinfo");
         uriBuilder.addParameter("requestMask.includeField", "person.names,person.photos,person.email_addresses");
         URI uri = uriBuilder.build();
         HttpGet httpRequest = new HttpGet(uri);
