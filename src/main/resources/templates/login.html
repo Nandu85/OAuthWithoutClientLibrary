@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head></head>
+
+<body>
+<h1>Login</h1>
+<div>
+  <h4><a href="/oauth2/authorization/google">Login with Google</a></h4>
+</div>
+<div><p>OR</p></div>
+<div>
+  <h4><a href="/oauth2/authorization/github">Login with Github</a></h4>
+</div>
+<div><p>OR</p></div>
+<div>
+  <h4><a href="/oauth2/authorization/facebook">Login with Facebook</a></h4>
+</div>
+<div><p>OR</p></div>
+<form name='f' action="login" method='POST'>
+  <table>
+    <tr>
+      <td>User:</td>
+      <td><input type='text' name='username' value=''></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type='password' name='password' /></td>
+    </tr>
+    <tr>
+      <td>Remember Me:</td>
+      <td><input type="checkbox" name="remember-me" /></td>
+    </tr>
+    <tr>
+      <td><input name="submit" type="submit" value="submit" /></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>
