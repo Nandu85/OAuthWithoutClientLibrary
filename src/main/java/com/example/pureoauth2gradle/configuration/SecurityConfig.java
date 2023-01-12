@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/login*", "/oauth2/**","/token").permitAll()
+                .requestMatchers("/login", "/login*", "/login/oauth2/code/github", "/oauth2/**","/token").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/loginPage").successForwardUrl("/")
