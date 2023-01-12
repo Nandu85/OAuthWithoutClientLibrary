@@ -2,6 +2,7 @@ package com.example.pureoauth2gradle.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.hc.core5.http.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +37,12 @@ public class FirstController {
     }
 
     @RequestMapping("/oauth2/authorization/google")
-    public String authorizedOAuth() throws URISyntaxException {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> s = restTemplate.postForEntity(oAuthService.generateAuthCodeRequest(), null, String.class);
-        System.out.println(s);
-        return s.getBody();
+    public void authorizedOAuth(HttpServletResponse response) throws URISyntaxException, IOException {
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> s = restTemplate.postForEntity(oAuthService.generateAuthCodeRequest(), null, String.class);
+//        System.out.println(s);
+//        return s.getBody();
+        response.sendRedirect(oAuthService.generateAuthCodeRequest().toString());
     }
 
     @GetMapping("/token")

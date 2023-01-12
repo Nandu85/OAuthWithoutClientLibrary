@@ -35,7 +35,9 @@ public class OAuthService {
         URIBuilder uriBuilder = new URIBuilder("https://accounts.google.com/o/oauth2/v2/auth");
         attributesMap.entrySet()
                 .forEach(stringEntry -> uriBuilder.addParameter(stringEntry.getKey(), stringEntry.getValue()));
-        return uriBuilder.build();
+        URI uri = uriBuilder.build();
+        System.out.println(uri.toString());
+        return uri;
     }
 
     public String generateAuthToken(String code) throws URISyntaxException {
@@ -50,16 +52,16 @@ public class OAuthService {
         attributesMap.forEach(uriBuilder::addParameter);
 
 
-        ResponseEntity<String> response = restTemplate.postForEntity(uriBuilder.build(),null,String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(uriBuilder.build(), null, String.class);
         return response.getBody();
     }
 
-    public String getPersonDetail (String token) throws URISyntaxException, IOException, ParseException {
+    public String getPersonDetail(String token) throws URISyntaxException, IOException, ParseException {
         URIBuilder uriBuilder = new URIBuilder("https://www.googleapis.com/oauth2/v3/userinfo");
         uriBuilder.addParameter("requestMask.includeField", "person.names,person.photos,person.email_addresses");
         URI uri = uriBuilder.build();
         HttpGet httpRequest = new HttpGet(uri);
-        httpRequest.setHeader("Authorization", "Bearer "+token);
+        httpRequest.setHeader("Authorization", "Bearer " + token);
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         HttpClientResponseHandler get = new BasicHttpClientResponseHandler();
