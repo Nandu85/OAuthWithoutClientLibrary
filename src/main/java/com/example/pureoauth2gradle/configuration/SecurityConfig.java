@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .cors().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/login", "/login*", "/login/oauth2/code/github", "/oauth2/**","/token").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll() //.authenticated()
                 .and()
                 .formLogin().loginPage("/loginPage").successForwardUrl("/")
                 .and()
